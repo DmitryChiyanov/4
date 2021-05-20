@@ -1,10 +1,13 @@
-from sys import argv
+my_f = open('test.txt', 'w')
+line = input('Введите текст \n')
+while line:
+    my_f.writelines(line)
+    line = input('Введите текст \n')
+    if not line:
+        break
 
-def zp():
-    try:
-        chas, stavka, prem = map(float, argv[1:])
-        print(f"зарплата - {chas * stavka + prem}")
-    except ValueError:
-        print("вводить надо числа. 3 штука")
-
-zp()
+my_f.close()
+my_f = open('test.txt', 'r')
+content = my_f.readlines()
+print(content)
+my_f.close()

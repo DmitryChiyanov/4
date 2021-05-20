@@ -1,3 +1,18 @@
-spisok = [300, 2, 12, 44, 1, 1, 4, 10, 7, 1, 78, 123, 55]
-final = [spisok[num] for num in range(1, len(spisok)) if spisok[num] > spisok[num - 1]]
-print(final)
+my_file = open('file.txt', 'r')
+content = my_file.read()
+
+print(f'Содержимое файла: \n {content}')
+
+my_file = open('file.txt', 'r')
+content = my_file.readlines()
+
+print(f'Количество строк в файле - {len(content)}')
+
+my_file = open('file.txt', 'r')
+content = my_file.readlines()
+
+for i in range(len(content)):
+    print(f'Количество слов {i + 1} - ой строки {len(content[i].split())}')
+
+
+my_file.close()

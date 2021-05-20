@@ -1,10 +1,27 @@
-def factorio(chislo):
-    start = 1
-    if chislo == 0:
-        yield f'{chislo}! = 1'
-    for i in range(1, chislo+1):
-        start *= i
-        yield f'{i}! = {start}'
+import json
 
-for el in factorio(int(input('введите число '))):
-    print(el)
+profit = {}
+pr = {}
+prof = 0
+prof_aver = 0
+i = 0
+with open('file.txt', 'r') as file:
+    for line in file:
+        name, firm, earning, damage = line.split()
+        profit[name] = int(earning) - int(damage)
+        if profit.setdefault(name) >= 0:
+            prof = prof + profit.setdefault(name)
+            i += 1
+    if i != 0:
+        prof_aver = prof / i
+        print(f'средняя прибыль - {prof_aver:.2f}')
+    else:
+        print(f'денег нет но вы держитесь')
+    pr = {'srednyaya pribil': round(prof_aver)}
+
+    print(f'Прибыль каждой компании - {profit}')
+
+with open('file.json', 'w') as write_js:
+    list = [profit, pr]
+
+    json.dump(list, write_js)
